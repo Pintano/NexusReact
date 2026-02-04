@@ -7,8 +7,8 @@ export function useFetch(fetchFunction, deps = []) {
 
   useEffect(() => {
     let isMounted = true;
-
     setLoading(true);
+
     fetchFunction()
       .then((res) => {
         if (isMounted) {
@@ -17,18 +17,13 @@ export function useFetch(fetchFunction, deps = []) {
         }
       })
       .catch((err) => {
-        if (isMounted) {
-          setError(err.message);
-        }
+        if (isMounted) setError(err.message);
       })
       .finally(() => {
         if (isMounted) setLoading(false);
       });
 
-    return () => {
-      isMounted = false;
-    };
-  }, deps);
+  }, [fetchFunction, ...deps]);
 
   return { data, loading, error };
 }
