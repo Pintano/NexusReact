@@ -1,12 +1,11 @@
 import { getSpaceDetail } from "../api/fetch";
 import { useFetch } from "../hooks/useFetch";
+import { useCallback } from "react";
 
 export default function SpaceDetail({ spaceId }) {
-  const {
-    data: space,
-    loading,
-    error,
-  } = useFetch(() => getSpaceDetail(spaceId), [spaceId]);
+  const fetchDetail = useCallback(() => getSpaceDetail(spaceId), [spaceId]);
+
+  const { data: space, loading, error } = useFetch(fetchDetail);
 
   if (loading) {
     return <p style={{ textAlign: "center" }}>Cargando detalle...</p>;

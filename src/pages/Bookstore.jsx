@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   getTopBooks,
   getCategories,
@@ -18,20 +18,19 @@ export default function Bookstore() {
   const { data: categories, loading: loadingCategories } =
     useFetch(getCategories, []);
 
+  // Usamos useCallback para que la función sea estable y no rompa build
+  const fetchCategoryBooks = useCallback(() => {
+    if (selectedCategory) return getBooksByCategory(selectedCategory);
+    return Promise.resolve(null);
+  }, [selectedCategory]);
+
   const { data: categoryBooks, loading: loadingBooks } =
-    useFetch(
-      () =>
-        selectedCategory
-          ? getBooksByCategory(selectedCategory)
-          : Promise.resolve(null),
-      [selectedCategory]
-    );
+    useFetch(fetchCategoryBooks);
 
   return (
     <div>
-        <Navbar />
-        <div style={{ display: "flex", padding: "2rem" }}>
-
+      <Navbar />
+      <div style={{ display: "flex", padding: "2rem" }}>
         <CategoryMenu
           categories={categories}
           loading={loadingCategories}
@@ -55,6 +54,5 @@ export default function Bookstore() {
         </main>
       </div>
     </div>
-    
   );
 }

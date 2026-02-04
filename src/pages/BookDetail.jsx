@@ -3,13 +3,15 @@ import { getBookDetails, purchaseBooks } from "../api/fetch";
 import { useFetch } from "../hooks/useFetch";
 import { useAuth } from "../hooks/useAuth";
 import Navbar from "../components/layout/Navbar";
+import { useCallback } from "react";
 
 export default function BookDetail() {
   const { id } = useParams();
   const { user } = useAuth();
 
-  const { data: book, loading, error } =
-    useFetch(() => getBookDetails(id), [id]);
+  // Encapsulamos la función de fetch en useCallback
+  const fetchBook = useCallback(() => getBookDetails(id), [id]);
+  const { data: book, loading, error } = useFetch(fetchBook, [fetchBook]);
 
   const handlePurchase = async () => {
     try {
@@ -79,7 +81,18 @@ export default function BookDetail() {
           <p><strong>ISBN:</strong> {book.ISBN}</p>
           <p><strong>Categoría:</strong> {book.category}</p>
 
-          <button onClick={handlePurchase}>
+          <button
+            style={{
+              marginTop: "1rem",
+              padding: "0.6rem 1.2rem",
+              backgroundColor: "#007bff",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+            onClick={handlePurchase}
+          >
             Comprar libro
           </button>
         </div>

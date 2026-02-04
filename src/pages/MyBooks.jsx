@@ -3,18 +3,14 @@ import { useFetch } from "../hooks/useFetch";
 import { getUserPurchases } from "../api/fetch";
 import Navbar from "../components/layout/Navbar";
 import BookList from "../components/BookList";
+import { useCallback } from "react";
 
 export default function MyBooks() {
   const { user } = useAuth();
 
-  const {
-    data: books,
-    loading,
-    error,
-  } = useFetch(
-    () => getUserPurchases(user.id),
-    [user.id]
-  );
+  const fetchBooks = useCallback(() => getUserPurchases(user.id), [user.id]);
+
+  const { data: books, loading, error } = useFetch(fetchBooks, [fetchBooks]);
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f7f7f7" }}>
@@ -29,9 +25,7 @@ export default function MyBooks() {
       >
         {/* CABECERA */}
         <header style={{ marginBottom: "2rem" }}>
-          <h1 style={{ marginBottom: "0.5rem" }}>
-            📚 Mis libros
-          </h1>
+          <h1 style={{ marginBottom: "0.5rem" }}>📚 Mis libros</h1>
           <p style={{ color: "#666", fontSize: "1rem" }}>
             Libros que has adquirido previamente en la librería universitaria
           </p>

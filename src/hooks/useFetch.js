@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useFetch(fetchFunction, deps = []) {
+export function useFetch(fetchFunction) { // ❌ sin deps dinámicas
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -10,20 +10,21 @@ export function useFetch(fetchFunction, deps = []) {
     setLoading(true);
 
     fetchFunction()
-      .then((res) => {
+      .then(res => {
         if (isMounted) {
           setData(res);
           setError(null);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         if (isMounted) setError(err.message);
       })
       .finally(() => {
         if (isMounted) setLoading(false);
       });
 
-  }, [fetchFunction, ...deps]);
+    return () => { isMounted = false; };
+  }, [fetchFunction]); 
 
   return { data, loading, error };
 }
