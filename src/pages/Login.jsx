@@ -29,20 +29,26 @@ export default function Login() {
         alignItems: "center",
         justifyContent: "center",
         background: "#f4f6f8",
+        padding: "20px" // 👈 evita que se pegue a bordes en móvil
       }}
     >
       <div
         style={{
           width: "100%",
-          maxWidth: "350px",
-
-          padding: "2rem",
+          maxWidth: "420px",
+          padding: "clamp(1.5rem, 4vw, 2.5rem)", // 👈 responsive padding
           background: "white",
-          borderRadius: "10px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+          borderRadius: "16px",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
         }}
       >
-        <h1 style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+        <h1
+          style={{
+            textAlign: "center",
+            marginBottom: "0.5rem",
+            fontSize: "clamp(1.8rem, 5vw, 2.4rem)", // 👈 responsive font
+          }}
+        >
           Nexus
         </h1>
 
@@ -51,14 +57,16 @@ export default function Login() {
             textAlign: "center",
             marginBottom: "2rem",
             color: "#666",
+            fontSize: "clamp(0.9rem, 2.5vw, 1rem)",
           }}
         >
           Accede a la librería y al co-working
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: "1rem" }}>
-            <label style={{ display: "block", marginBottom: "0.3rem" }}>
+          {/* Nombre */}
+          <div style={{ marginBottom: "1.2rem" }}>
+            <label style={{ display: "block", marginBottom: "0.4rem" }}>
               Nombre
             </label>
             <input
@@ -68,15 +76,17 @@ export default function Login() {
               onChange={(e) => setName(e.target.value)}
               style={{
                 width: "100%",
-                padding: "0.5rem",
-                borderRadius: "5px",
+                padding: "0.75rem", // 👈 mejor en móvil
+                borderRadius: "8px",
                 border: "1px solid #ccc",
+                fontSize: "1rem",
               }}
             />
           </div>
 
-          <div style={{ marginBottom: "1.5rem" }}>
-            <label style={{ display: "block", marginBottom: "0.3rem" }}>
+          {/* Email */}
+          <div style={{ marginBottom: "1.8rem" }}>
+            <label style={{ display: "block", marginBottom: "0.4rem" }}>
               Email
             </label>
             <input
@@ -86,9 +96,10 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
               style={{
                 width: "100%",
-                padding: "0.5rem",
-                borderRadius: "5px",
+                padding: "0.75rem",
+                borderRadius: "8px",
                 border: "1px solid #ccc",
+                fontSize: "1rem",
               }}
             />
           </div>
@@ -97,13 +108,14 @@ export default function Login() {
             type="submit"
             style={{
               width: "100%",
-              padding: "0.7rem",
+              padding: "0.9rem",
               background: "#007bff",
               color: "white",
               border: "none",
-              borderRadius: "5px",
-              fontSize: "1rem",
+              borderRadius: "8px",
+              fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
               cursor: "pointer",
+              fontWeight: "600",
             }}
           >
             Entrar
