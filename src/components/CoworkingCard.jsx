@@ -1,31 +1,13 @@
 export default function CoworkingCard({ space, user, onReserve, onCancel, onHover }) {
   return (
-    <div className="cowork-card"
-
+    <div
+      className="cowork-card"
       onMouseEnter={() => onHover(space)}
       onMouseLeave={() => onHover(null)}
-      style={{
-        width: "250px",
-        border: "1px solid #ddd",
-        borderRadius: "12px",
-        padding: "1rem",
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-        transition: "transform 0.2s, box-shadow 0.2s",
-        backgroundColor: "#fff",
-        cursor: "pointer",
-      }}
-      onMouseOver={(e) => {
-        e.currentTarget.style.transform = "translateY(-5px)";
-        e.currentTarget.style.boxShadow = "0 8px 12px rgba(0,0,0,0.15)";
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 4px 8px rgba(0,0,0,0.1)";
-      }}
     >
-      <h3 style={{ margin: "0 0 0.5rem 0", color: "#333" }}>{space.name || `Espacio ${space.id}`}</h3>
-      <p style={{ margin: "0.25rem 0", color: "#555" }}>Capacidad: {space.capacity} personas</p>
-      <p style={{ margin: "0.25rem 0", color: "#555" }}>
+      <h3>{space.name || `Espacio ${space.id}`}</h3>
+      <p>Capacidad: {space.capacity} personas</p>
+      <p>
         Estado:{" "}
         <strong style={{ color: space.occupied ? "red" : "green" }}>
           {space.occupied ? "Ocupado" : "Libre"}
@@ -34,51 +16,61 @@ export default function CoworkingCard({ space, user, onReserve, onCancel, onHove
 
       {space.occupied ? (
         <>
-          <p style={{ margin: "0.25rem 0", color: "#555" }}>Usuario: {space.user}</p>
-          <p style={{ margin: "0.25rem 0", color: "#555" }}>Hasta: {space.endTime}</p>
+          <p>Usuario: {space.user}</p>
+          <p>Hasta: {space.endTime}</p>
           {space.user === user.name && (
-            <button
-              onClick={() => onCancel(space.reservationId)}
-              style={{
-                marginTop: "0.5rem",
-                width: "100%",
-                padding: "0.5rem",
-                borderRadius: "6px",
-                border: "none",
-                backgroundColor: "#dc3545",
-                color: "white",
-                fontWeight: "bold",
-                cursor: "pointer",
-                transition: "background-color 0.2s",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#a71d2a")}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#dc3545")}
-            >
+            <button onClick={() => onCancel(space.reservationId)}>
               Cancelar reserva
             </button>
           )}
         </>
       ) : (
-        <button
-          onClick={() => onReserve(space.id)}
-          style={{
-            marginTop: "0.5rem",
-            width: "100%",
-            padding: "0.5rem",
-            borderRadius: "6px",
-            border: "none",
-            backgroundColor: "#28a745",
-            color: "white",
-            fontWeight: "bold",
-            cursor: "pointer",
-            transition: "background-color 0.2s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1e7e34")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#28a745")}
-        >
-          Reservar  
-        </button>
+        <button onClick={() => onReserve(space.id)}>Reservar</button>
       )}
+
+      <style jsx>{`
+        .cowork-card {
+          border: 1px solid #ddd;
+          border-radius: 12px;
+          padding: 1rem;
+          background: #fff;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+          transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cowork-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .cowork-card h3 {
+          margin: 0 0 0.5rem 0;
+          color: #333;
+        }
+        .cowork-card p {
+          margin: 0.25rem 0;
+          color: #555;
+        }
+        .cowork-card button {
+          margin-top: 0.5rem;
+          width: 100%;
+          padding: 0.5rem;
+          border-radius: 6px;
+          border: none;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+        .cowork-card button:hover {
+          opacity: 0.9;
+        }
+        .cowork-card button:active {
+          transform: scale(0.98);
+        }
+        .cowork-card button {
+          background-color: ${space.occupied ? "#dc3545" : "#28a745"};
+        }
+      `}</style>
     </div>
   );
 }
