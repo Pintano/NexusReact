@@ -44,13 +44,11 @@ export default function Coworking() {
           gap: "2.5rem",
         }}
       >
-        {/* Header */}
         <div style={{ textAlign: "center" }}>
           <h1 style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>Espacios de Co-working</h1>
           <p style={{ color: "#555" }}>Reserva espacios de estudio y trabajo colaborativo</p>
         </div>
 
-        {/* Grid de espacios */}
         <div
           style={{
             display: "grid",
@@ -70,7 +68,6 @@ export default function Coworking() {
           ))}
         </div>
 
-        {/* Detalle del espacio seleccionado */}
         {selectedSpaceId && (
           <div
             style={{

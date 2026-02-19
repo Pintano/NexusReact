@@ -1,0 +1,83 @@
+/* ===== GLOBAL ===== */
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Containers reutilizables */
+.page-container {
+  padding: 2rem;
+}
+
+.flex-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.grid-auto {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 1024px) {
+  .page-container {
+    padding: 1.5rem;
+  }
+}
+
+/* ===== TABLET PEQUEÑA ===== */
+@media (max-width: 820px) {
+  .flex-row {
+    flex-direction: column;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+  h1 { font-size: 1.6rem !important; }
+  h2 { font-size: 1.3rem !important; }
+
+  button {
+    width: 100%;
+  }
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .navbar-links {
+    flex-wrap: wrap;
+    gap: 0.7rem !important;
+  }
+
+  /* Sidebar */
+  .category-menu {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+
+  /* Cards */
+  .book-card {
+    width: 100% !important;
+  }
+
+  .cowork-card {
+    width: 100% !important;
+  }
+}
+
+/* ===== MOBILE SMALL ===== */
+@media (max-width: 480px) {
+  .page-container {
+    padding: 1rem;
+  }
+}

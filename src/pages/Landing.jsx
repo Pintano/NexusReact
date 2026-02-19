@@ -9,7 +9,6 @@ export default function Landing() {
     <div style={{ minHeight: "100vh", background: "#f4f6f8" }}>
       <Navbar />
 
-      {/* HERO */}
       <section
         style={{
           padding: "4rem 2rem",
@@ -54,7 +53,6 @@ export default function Landing() {
         )}
       </section>
 
-      {/* SERVICIOS */}
       <section
         style={{
           padding: "3rem 2rem",

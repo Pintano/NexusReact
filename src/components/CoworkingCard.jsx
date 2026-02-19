@@ -1,6 +1,7 @@
 export default function CoworkingCard({ space, user, onReserve, onCancel, onHover }) {
   return (
-    <div
+    <div className="cowork-card"
+
       onMouseEnter={() => onHover(space)}
       onMouseLeave={() => onHover(null)}
       style={{
@@ -75,7 +76,7 @@ export default function CoworkingCard({ space, user, onReserve, onCancel, onHove
           onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1e7e34")}
           onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#28a745")}
         >
-          Reservar
+          Reservar  
         </button>
       )}
     </div>

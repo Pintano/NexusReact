@@ -9,7 +9,6 @@ export default function BookDetail() {
   const { id } = useParams();
   const { user } = useAuth();
 
-  // Encapsulamos la función de fetch en useCallback
   const fetchBook = useCallback(() => getBookDetails(id), [id]);
   const { data: book, loading, error } = useFetch(fetchBook, [fetchBook]);
 
@@ -29,21 +28,14 @@ export default function BookDetail() {
   if (error) return <p>Error: {error}</p>;
   if (!book) return null;
 
-  // Ajusta el nombre del campo si tu API usa otro
   const imageUrl = book.image || book.cover || book.imageUrl;
 
   return (
     <div>
       <Navbar />
 
-      <div
-        style={{
-          padding: "2rem",
-          display: "flex",
-          gap: "2rem",
-        }}
-      >
-        {/* IMAGEN */}
+      <div className="flex-row page-container">
+
         <div>
           {imageUrl ? (
             <img
@@ -72,7 +64,6 @@ export default function BookDetail() {
           )}
         </div>
 
-        {/* INFO */}
         <div>
           <h1>{book.title}</h1>
           <p><strong>Autor:</strong> {book.author}</p>

@@ -18,7 +18,6 @@ export default function Bookstore() {
   const { data: categories, loading: loadingCategories } =
     useFetch(getCategories, []);
 
-  // Usamos useCallback para que la función sea estable y no rompa build
   const fetchCategoryBooks = useCallback(() => {
     if (selectedCategory) return getBooksByCategory(selectedCategory);
     return Promise.resolve(null);
@@ -30,7 +29,8 @@ export default function Bookstore() {
   return (
     <div>
       <Navbar />
-      <div style={{ display: "flex", padding: "2rem" }}>
+        <div className="flex-row page-container">
+
         <CategoryMenu
           categories={categories}
           loading={loadingCategories}

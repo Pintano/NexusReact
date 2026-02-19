@@ -23,7 +23,6 @@ export default function MyBooks() {
           padding: "2.5rem 2rem",
         }}
       >
-        {/* CABECERA */}
         <header style={{ marginBottom: "2rem" }}>
           <h1 style={{ marginBottom: "0.5rem" }}>📚 Mis libros</h1>
           <p style={{ color: "#666", fontSize: "1rem" }}>
@@ -31,7 +30,6 @@ export default function MyBooks() {
           </p>
         </header>
 
-        {/* ESTADOS */}
         {error && (
           <div
             style={{
@@ -60,7 +58,6 @@ export default function MyBooks() {
           </div>
         )}
 
-        {/* LISTA */}
         <div
           style={{
             backgroundColor: "#fff",

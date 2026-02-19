@@ -15,7 +15,6 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (userData) => {
-    // Login SIMULADO (API no tiene endpoint real de login)
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };

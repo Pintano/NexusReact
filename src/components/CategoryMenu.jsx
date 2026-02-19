@@ -13,8 +13,7 @@ export default function CategoryMenu({ categories, loading, onSelect }) {
   };
 
   return (
-    <aside
-      style={{
+    <aside className="category-menu" style={{
         width: collapsed ? "50px" : "220px",
         transition: "width 0.3s",
         padding: "1rem",
@@ -22,10 +21,9 @@ export default function CategoryMenu({ categories, loading, onSelect }) {
         backgroundColor: "#f9f9f9",
         boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
         overflow: "hidden",
-        marginRight: "2rem", // <- margen a la derecha agregado
+        marginRight: "2rem",
       }}
     >
-      {/* Botón plegar/desplegar */}
       <button
         onClick={() => setCollapsed(!collapsed)}
         style={{

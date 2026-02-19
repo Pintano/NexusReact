@@ -22,7 +22,6 @@ export async function request(method, endpoint, body = null) {
   return data;
 }
 
-// 📚 LIBRERÍA
 export const getTopBooks = () => request("GET", "/books/top");
 export const getCategories = () => request("GET", "/categories");
 export const getBooksByCategory = (id) =>
@@ -35,7 +34,6 @@ export const getUserPurchases = (userId) =>
 export const purchaseBooks = (data) =>
   request("POST", "/purchases", data);
 
-// 🪑 COWORKING
 export const getSpaces = () => request("GET", "/coworking/spaces");
 export const getSpaceDetail = (id) =>
   request("GET", `/coworking/spaces/${id}`);

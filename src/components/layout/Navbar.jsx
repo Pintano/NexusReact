@@ -17,9 +17,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={navStyle}>
+    <nav style={navStyle} className="navbar">
+
       <h2 style={{ margin: 0 }}>Nexus</h2>
-      <div style={{ marginLeft: "auto", display: "flex", gap: "1rem" }}>
+      <div style={{ marginLeft: "auto", display: "flex", gap: "1rem" }} className="navbar-links">
+
         <Link to="/" style={linkStyle}>Inicio</Link>
         <Link to="/login" style={linkStyle}>Login</Link>
         <Link to="/bookstore" style={linkStyle}>Bookstore</Link>

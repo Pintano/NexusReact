@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 export default function BookCard({ book }) {
   return (
-    <div
-      style={{
+      <div className="book-card" style={{
+
         width: "220px",
         border: "1px solid #ddd",
         borderRadius: "12px",
@@ -38,7 +38,6 @@ export default function BookCard({ book }) {
         <p style={{ margin: "0.25rem 0", color: "#555" }}>
           <strong>Año:</strong> {book.year} | <strong>Categoría:</strong> {book.category}
         </p>
-        {/* PRECIO (solo si existe) */}
         {typeof book.price === "number" ? (
           <p style={{ fontWeight: "bold" }}>
             {book.price.toFixed(2)} €
