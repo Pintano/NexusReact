@@ -12,6 +12,11 @@ function CategoryMenu({ categories, loading, onSelect, selected }) {
   const [collapsed, setCollapsed] = useState(true);
   const [activeId, setActiveId] = useState(selected ?? null);
 
+  // sync when `selected` prop changes (always call hook before returns)
+  useEffect(() => {
+    setActiveId(selected ?? null);
+  }, [selected]);
+
   if (loading) return <p>Cargando categorías...</p>;
   if (!categories || categories.length === 0) return <p>No hay categorías</p>;
 
@@ -21,10 +26,6 @@ function CategoryMenu({ categories, loading, onSelect, selected }) {
     if (window.innerWidth < 768) setCollapsed(true); // auto colapsa en móvil
   };
 
-  // sync when `selected` prop changes
-  useEffect(() => {
-    setActiveId(selected ?? null);
-  }, [selected]);
 
   return (
     <div className="category-menu" role="navigation" aria-label="Categorías">
