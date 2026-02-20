@@ -35,6 +35,7 @@ export default function BookDetail() {
       <Navbar />
 
       <div
+        className="page-container"
         style={{
           maxWidth: "1100px",
           margin: "0 auto",

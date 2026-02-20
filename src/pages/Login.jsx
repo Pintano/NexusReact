@@ -25,6 +25,7 @@ export default function Login() {
 
   return (
     <div
+      className="page-container"
       style={{
         minHeight: "100vh",
         display: "flex",

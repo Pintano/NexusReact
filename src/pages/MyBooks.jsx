@@ -25,6 +25,7 @@ export default function MyBooks() {
       <Navbar />
 
       <div
+        className="page-container"
         style={{
           maxWidth: "1200px",
           margin: "0 auto",

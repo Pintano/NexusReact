@@ -10,20 +10,21 @@ export default function Landing() {
       <Navbar />
 
       <section
+        className="page-container"
         style={{
           padding: "4rem 2rem",
           textAlign: "center",
           background: "white",
         }}
       >
-        <h1 style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+        <h1 style={{ fontSize: "clamp(2rem, 6vw, 3rem)", marginBottom: "1rem" }}>
           Nexus
         </h1>
 
         <p
           style={{
             fontSize: "1.2rem",
-            maxWidth: "700px",
+            maxWidth: "min(700px, 95%)",
             margin: "0 auto",
             color: "#555",
           }}
@@ -54,6 +55,7 @@ export default function Landing() {
       </section>
 
       <section
+        className="page-container"
         style={{
           padding: "3rem 2rem",
           display: "flex",
@@ -93,7 +95,8 @@ export default function Landing() {
 }
 
 const cardStyle = {
-  width: "300px",
+  width: "100%",
+  maxWidth: "300px",
   padding: "1.5rem",
   background: "white",
   borderRadius: "10px",

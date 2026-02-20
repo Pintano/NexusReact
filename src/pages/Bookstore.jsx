@@ -49,7 +49,8 @@ function CategoryMenu({ categories, loading, onSelect }) {
       <style>
         {`
           .category-menu {
-            width: 220px;
+            width: 100%;
+            box-sizing: border-box;
           }
           .menu-toggle {
             display: none;
@@ -183,6 +184,12 @@ export default function Bookstore() {
             }
             .bookstore-container main {
               margin-left: 2rem;
+              flex: 1 1 auto;
+              min-width: 0;
+            }
+            .category-menu {
+              flex: 0 0 220px;
+              max-width: 220px;
             }
             .category-menu ul {
               display: block !important;

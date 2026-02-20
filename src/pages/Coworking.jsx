@@ -45,7 +45,7 @@ export default function Coworking() {
   return (
     <div className="coworking-container">
       <Navbar />
-      <div className="coworking-content">
+      <div className="coworking-content page-container">
         <header className="coworking-header">
           <h1>Espacios de Co-working</h1>
           <p>Reserva espacios de estudio y trabajo colaborativo</p>
