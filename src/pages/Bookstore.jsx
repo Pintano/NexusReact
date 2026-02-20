@@ -40,7 +40,7 @@ function CategoryMenu({ categories, loading, onSelect, selected }) {
       </button>
 
       {/* Lista de categorías */}
-      <ul id="category-list" className={collapsed ? "collapsed" : "expanded"} role="list">
+      <ul id="category-list" className={collapsed ? "collapsed" : "expanded"}>
         <li>
           <button
             onClick={() => handleClick(null)}
