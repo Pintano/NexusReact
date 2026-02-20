@@ -31,17 +31,19 @@ export default function Login() {
         alignItems: "center",
         justifyContent: "center",
         background: "#f4f6f8",
-        padding: "20px" // 👈 evita que se pegue a bordes en móvil
+        padding: "20px"
       }}
     >
       <div
         style={{
-          width: "100%",
-          maxWidth: "420px",
-          padding: "clamp(1.5rem, 4vw, 2.5rem)", // 👈 responsive padding
+          width: "min(420px, 96%)",
+          padding: "clamp(1rem, 4vw, 2rem)",
           background: "white",
-          borderRadius: "16px",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
+          borderRadius: "12px",
+          boxShadow: "0 10px 25px rgba(0,0,0,0.12)",
+          boxSizing: "border-box",
+          maxHeight: "calc(100vh - 40px)",
+          overflowY: "auto",
         }}
       >
         <h1
@@ -80,10 +82,11 @@ export default function Login() {
               onChange={(e) => setName(e.target.value)}
               style={{
                 width: "100%",
-                padding: "0.75rem", // 👈 mejor en móvil
+                padding: "0.75rem",
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 fontSize: "1rem",
+                boxSizing: "border-box",
               }}
             />
           </div>
@@ -106,6 +109,7 @@ export default function Login() {
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 fontSize: "1rem",
+                boxSizing: "border-box",
               }}
             />
           </div>
@@ -122,6 +126,7 @@ export default function Login() {
               fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
               cursor: "pointer",
               fontWeight: "600",
+              boxSizing: "border-box",
             }}
           >
             Entrar
