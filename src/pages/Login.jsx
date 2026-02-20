@@ -10,6 +10,8 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Basic validation: do not submit empty name or email
+    if (!name || !name.trim() || !email || !email.trim()) return;
 
     const userData = {
       id: 1,
@@ -66,10 +68,12 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           {/* Nombre */}
           <div style={{ marginBottom: "1.2rem" }}>
-            <label style={{ display: "block", marginBottom: "0.4rem" }}>
+            <label htmlFor="name" style={{ display: "block", marginBottom: "0.4rem" }}>
               Nombre
             </label>
             <input
+              id="name"
+              name="name"
               type="text"
               required
               value={name}
@@ -86,10 +90,12 @@ export default function Login() {
 
           {/* Email */}
           <div style={{ marginBottom: "1.8rem" }}>
-            <label style={{ display: "block", marginBottom: "0.4rem" }}>
+            <label htmlFor="email" style={{ display: "block", marginBottom: "0.4rem" }}>
               Email
             </label>
             <input
+              id="email"
+              name="email"
               type="email"
               required
               value={email}
