@@ -4,15 +4,16 @@ export default function BookCard({ book }) {
   return (
     <div
       style={{
-        width: "100%", // 🔥 clave
-        maxWidth: "260px",
-        margin: "0 auto",
+        width: "100%",
         border: "1px solid #ddd",
         borderRadius: "12px",
         overflow: "hidden",
         boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
         transition: "transform 0.2s, box-shadow 0.2s",
         backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = "translateY(-5px)";
@@ -28,12 +29,12 @@ export default function BookCard({ book }) {
         alt={book.title}
         style={{
           width: "100%",
-          height: "clamp(200px, 40vw, 300px)",
+          height: "clamp(200px, 28vw, 300px)",
           objectFit: "cover",
         }}
       />
 
-      <div style={{ padding: "clamp(0.8rem, 2.5vw, 1rem)" }}>
+      <div style={{ padding: "clamp(0.8rem, 2.5vw, 1rem)", flex: "1 1 auto" }}>
         <h3
           style={{
             margin: "0 0 0.5rem 0",

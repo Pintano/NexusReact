@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   getTopBooks,
   getCategories,
@@ -8,9 +8,9 @@ import { useFetch } from "../hooks/useFetch";
 import Navbar from "../components/layout/Navbar";
 import BookList from "../components/BookList";
 
-function CategoryMenu({ categories, loading, onSelect }) {
+function CategoryMenu({ categories, loading, onSelect, selected }) {
   const [collapsed, setCollapsed] = useState(true);
-  const [activeId, setActiveId] = useState(null);
+  const [activeId, setActiveId] = useState(selected ?? null);
 
   if (loading) return <p>Cargando categorías...</p>;
   if (!categories || categories.length === 0) return <p>No hay categorías</p>;
@@ -21,23 +21,40 @@ function CategoryMenu({ categories, loading, onSelect }) {
     if (window.innerWidth < 768) setCollapsed(true); // auto colapsa en móvil
   };
 
+  // sync when `selected` prop changes
+  useEffect(() => {
+    setActiveId(selected ?? null);
+  }, [selected]);
+
   return (
-    <div className="category-menu">
+    <div className="category-menu" role="navigation" aria-label="Categorías">
       {/* Botón hamburguesa solo en móvil */}
       <button
         className="menu-toggle"
         onClick={() => setCollapsed(!collapsed)}
+        aria-expanded={!collapsed}
+        aria-controls="category-list"
       >
         {collapsed ? "☰ Categorías" : "✕ Cerrar"}
       </button>
 
       {/* Lista de categorías */}
-      <ul className={collapsed ? "collapsed" : "expanded"}>
+      <ul id="category-list" className={collapsed ? "collapsed" : "expanded"} role="list">
+        <li>
+          <button
+            onClick={() => handleClick(null)}
+            className={activeId === null ? "active" : ""}
+            aria-pressed={activeId === null}
+          >
+            Todas
+          </button>
+        </li>
         {categories.map((cat) => (
           <li key={cat.id}>
             <button
               onClick={() => handleClick(cat.id)}
               className={activeId === cat.id ? "active" : ""}
+              aria-pressed={activeId === cat.id}
             >
               {cat.name}
             </button>
@@ -63,6 +80,12 @@ function CategoryMenu({ categories, loading, onSelect }) {
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
+            text-align: left;
+          }
+          .menu-toggle:focus-visible,
+          .category-menu li button:focus-visible {
+            outline: 3px solid rgba(0,123,255,0.25);
+            outline-offset: 2px;
           }
           ul {
             list-style: none;
@@ -80,6 +103,9 @@ function CategoryMenu({ categories, loading, onSelect }) {
             cursor: pointer;
             text-align: left;
             transition: all 0.2s;
+          }
+          li button[aria-pressed="true"] {
+            box-shadow: inset 0 0 0 2px rgba(0,123,255,0.08);
           }
           li button.active {
             background: #007bff;
@@ -108,6 +134,7 @@ function CategoryMenu({ categories, loading, onSelect }) {
     </div>
   );
 }
+
 
 export default function Bookstore() {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -153,6 +180,7 @@ export default function Bookstore() {
               categories={categories}
               loading={loadingCategories}
               onSelect={setSelectedCategory}
+              selected={selectedCategory}
             />
 
             <main style={{ flex: 1 }}>
@@ -190,10 +218,22 @@ export default function Bookstore() {
             .category-menu {
               flex: 0 0 220px;
               max-width: 220px;
+                position: sticky;
+                top: 96px;
+                align-self: flex-start;
+                height: calc(100vh - 120px);
+                overflow: hidden;
             }
-            .category-menu ul {
-              display: block !important;
-            }
+              .category-menu ul {
+                display: block !important;
+                max-height: calc(100vh - 160px);
+                overflow-y: auto;
+                padding-right: 8px;
+              }
+              /* slightly increase menu button spacing on desktop */
+              .category-menu li button {
+                padding: 0.6rem 0.9rem;
+              }
           }
         `}
       </style>

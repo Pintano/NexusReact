@@ -9,8 +9,8 @@ export default function BookList({ books }) {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-        gap: "clamp(0.8rem, 3vw, 1.5rem)",
+        gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+        gap: "clamp(1rem, 3vw, 1.6rem)",
       }}
     >
       {books.map((book) => (
