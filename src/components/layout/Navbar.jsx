@@ -48,7 +48,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav style={navStyle}>
+    <nav className="navbar" style={navStyle}>
       {/* Barra superior */}
       <div style={topBarStyle}>
         <h2 style={{ margin: 0 }}>Nexus</h2>
@@ -64,7 +64,7 @@ export default function Navbar() {
 
       {/* Links */}
       {(!isMobile || menuOpen) && (
-        <div style={linksContainer}>
+        <div className="navbar-links" style={linksContainer}>
           <Link to="/" style={linkStyle}>Inicio</Link>
           <Link to="/login" style={linkStyle}>Login</Link>
           <Link to="/bookstore" style={linkStyle}>Bookstore</Link>
